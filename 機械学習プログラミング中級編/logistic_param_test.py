@@ -14,11 +14,13 @@ y = data.target
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=100)
 
+# チューニングなしのモデル作成
 model1 = LogisticRegression()
 model1.fit(X_train, y_train)
 pred = model1.predict(X_test)
 print(f'パラメータチューニング前:{accuracy_score(y_test, pred)}')
 
+# ハイパーパラメータの候補
 param_grid = {
     'C':[0.001 * (10 ** i)for i in range(0, 6)],
     'solver':['newton-cg', 'lbfgs', 'libliner', 'sag', 'saga'],
